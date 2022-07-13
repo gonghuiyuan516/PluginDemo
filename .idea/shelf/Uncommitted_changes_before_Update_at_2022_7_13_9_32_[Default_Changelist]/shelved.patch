@@ -1,0 +1,242 @@
+Index: lib_base/src/main/java/com/ciot/lib_base/IBaseActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/src/main/java/com/ciot/lib_base/IBaseActivity.java b/lib_base/src/main/java/com/ciot/lib_base/IBaseActivity.java
+new file mode 100644
+--- /dev/null	(date 1657532120954)
++++ b/lib_base/src/main/java/com/ciot/lib_base/IBaseActivity.java	(date 1657532120954)
+@@ -0,0 +1,7 @@
++package com.ciot.lib_base;
++
++
++public interface IBaseActivity {
++    void create();
++    void resume();
++}
+Index: lib_base/src/androidTest/java/com/ciot/lib_base/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/src/androidTest/java/com/ciot/lib_base/ExampleInstrumentedTest.java b/lib_base/src/androidTest/java/com/ciot/lib_base/ExampleInstrumentedTest.java
+new file mode 100644
+--- /dev/null	(date 1657531882106)
++++ b/lib_base/src/androidTest/java/com/ciot/lib_base/ExampleInstrumentedTest.java	(date 1657531882106)
+@@ -0,0 +1,26 @@
++package com.ciot.lib_base;
++
++import android.content.Context;
++
++import androidx.test.platform.app.InstrumentationRegistry;
++import androidx.test.ext.junit.runners.AndroidJUnit4;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import static org.junit.Assert.*;
++
++/**
++ * Instrumented test, which will execute on an Android device.
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++@RunWith(AndroidJUnit4.class)
++public class ExampleInstrumentedTest {
++    @Test
++    public void useAppContext() {
++        // Context of the app under test.
++        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
++        assertEquals("com.ciot.lib_base.test", appContext.getPackageName());
++    }
++}
+\ No newline at end of file
+Index: lib_base/src/main/java/com/ciot/lib_base/BaseActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/src/main/java/com/ciot/lib_base/BaseActivity.java b/lib_base/src/main/java/com/ciot/lib_base/BaseActivity.java
+new file mode 100644
+--- /dev/null	(date 1657532146778)
++++ b/lib_base/src/main/java/com/ciot/lib_base/BaseActivity.java	(date 1657532146778)
+@@ -0,0 +1,7 @@
++package com.ciot.lib_base;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++public abstract class BaseActivity extends AppCompatActivity implements IBaseActivity{
++
++}
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/plugin\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 3ce7de89da6640c83af3ff7591722679d8e723cb)
++++ b/.idea/gradle.xml	(date 1657531890458)
+@@ -11,6 +11,7 @@
+           <set>
+             <option value="$PROJECT_DIR$" />
+             <option value="$PROJECT_DIR$/app" />
++            <option value="$PROJECT_DIR$/lib_base" />
+             <option value="$PROJECT_DIR$/plugin" />
+           </set>
+         </option>
+Index: lib_base/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/.gitignore b/lib_base/.gitignore
+new file mode 100644
+--- /dev/null	(date 1657531881882)
++++ b/lib_base/.gitignore	(date 1657531881882)
+@@ -0,0 +1,1 @@
++/build
+\ No newline at end of file
+Index: lib_base/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/proguard-rules.pro b/lib_base/proguard-rules.pro
+new file mode 100644
+--- /dev/null	(date 1657531881922)
++++ b/lib_base/proguard-rules.pro	(date 1657531881922)
+@@ -0,0 +1,21 @@
++# Add project specific ProGuard rules here.
++# You can control the set of applied configuration files using the
++# proguardFiles setting in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: lib_base/src/test/java/com/ciot/lib_base/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/src/test/java/com/ciot/lib_base/ExampleUnitTest.java b/lib_base/src/test/java/com/ciot/lib_base/ExampleUnitTest.java
+new file mode 100644
+--- /dev/null	(date 1657531882119)
++++ b/lib_base/src/test/java/com/ciot/lib_base/ExampleUnitTest.java	(date 1657531882119)
+@@ -0,0 +1,17 @@
++package com.ciot.lib_base;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: lib_base/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/src/main/AndroidManifest.xml b/lib_base/src/main/AndroidManifest.xml
+new file mode 100644
+--- /dev/null	(date 1657531882049)
++++ b/lib_base/src/main/AndroidManifest.xml	(date 1657531882049)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ciot.lib_base">
++
++</manifest>
+\ No newline at end of file
+Index: lib_base/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib_base/build.gradle b/lib_base/build.gradle
+new file mode 100644
+--- /dev/null	(date 1657531882031)
++++ b/lib_base/build.gradle	(date 1657531882031)
+@@ -0,0 +1,37 @@
++plugins {
++    id 'com.android.library'
++}
++
++android {
++    compileSdkVersion 32
++
++    defaultConfig {
++        minSdkVersion 24
++        targetSdkVersion 32
++        versionCode 1
++        versionName "1.0"
++
++        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
++        consumerProguardFiles "consumer-rules.pro"
++    }
++
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
++        }
++    }
++    compileOptions {
++        sourceCompatibility JavaVersion.VERSION_1_8
++        targetCompatibility JavaVersion.VERSION_1_8
++    }
++}
++
++dependencies {
++
++    implementation 'androidx.appcompat:appcompat:1.4.2'
++    implementation 'com.google.android.material:material:1.6.1'
++    testImplementation 'junit:junit:4.+'
++    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
++    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
++}
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>rootProject.name = \"PluginDemo\"\r\ninclude ':app'\r\ninclude ':plugin'\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle b/settings.gradle
+--- a/settings.gradle	(revision 3ce7de89da6640c83af3ff7591722679d8e723cb)
++++ b/settings.gradle	(date 1657531881960)
+@@ -1,3 +1,4 @@
+ rootProject.name = "PluginDemo"
+ include ':app'
+ include ':plugin'
++include ':lib_base'
+diff --git a/lib_base/consumer-rules.pro b/lib_base/consumer-rules.pro
+new file mode 100644
