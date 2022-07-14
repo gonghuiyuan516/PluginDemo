@@ -1,7 +1,5 @@
 package com.ciot.plugin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.ciot.plugin.base.BaseActivity;
