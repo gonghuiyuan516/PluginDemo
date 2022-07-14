@@ -2,7 +2,7 @@ package com.ciot.plugin;
 
 import android.os.Bundle;
 
-import com.ciot.plugin.base.BaseActivity;
+import com.vip.lib_transfer.BaseActivity;
 
 public class Plugin1Activity extends BaseActivity {
     @Override

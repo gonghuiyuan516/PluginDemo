@@ -1,4 +1,4 @@
-package com.ciot.plugin.base;
+package com.vip.lib_transfer;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
