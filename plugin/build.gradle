@@ -6,11 +6,11 @@ android {
     compileSdkVersion 32
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 32
+        minSdkVersion 21
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
-        applicationId "com.ciot.plugin"
+        applicationId "com.vip.plugindemo"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -25,6 +25,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
+    // 将插件的资源ID分区改为和宿主0x7F不同的值
+    aaptOptions {
+        additionalParameters "--package-id", "0x7E", "--allow-reserved-package-id"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {

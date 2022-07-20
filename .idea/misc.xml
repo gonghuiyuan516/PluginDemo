@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/PluginDemoGtihub/app/src/main/res/layout/activity_main.xml" value="0.165625" />
+        <entry key="..\:/Projects/PluginDemoGtihub/app/src/main/res/layout/activity_main_plugin.xml" value="0.22" />
+        <entry key="..\:/Projects/PluginDemoGtihub/app/src/main/res/layout/activity_test_proxy.xml" value="0.35885416666666664" />
+        <entry key="..\:/Projects/PluginDemoGtihub/plugin/src/main/res/layout/activity_plugin1.xml" value="0.33" />
         <entry key="..\:/StudioProjects/PluginDemo/app/src/main/res/layout/activity_main_plugin.xml" value="0.1762917933130699" />
         <entry key="..\:/StudioProjects/PluginDemo/plugin/src/main/res/layout/activity_plugin1.xml" value="0.1762917933130699" />
       </map>

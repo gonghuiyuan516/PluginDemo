@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
@@ -39,44 +40,32 @@ public class PluginManager {
     }
 
     public void loadPlugin(final Handler handler, final String path) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    File file = new File(path);
-                    Log.e(TAG, "File "+file.getAbsolutePath());
-                    if (!file.exists()) {
-                        Log.e(TAG, "插件不存在");
-                        return;
-                    }
-                    File pluginDir = context.getDir("plugin", Context.MODE_PRIVATE);
-                    //加载插件的class
-                    dexClassLoader = new DexClassLoader(path, pluginDir.getAbsolutePath(), null, context.getClassLoader());
-                    //加载插件的资源文件
-                    //1、获取插件的AssetManager
-                    AssetManager pluginAssetManager = AssetManager.class.newInstance();
-                    Method addAssetPath = AssetManager.class.getMethod("addAssetPath", String.class);
-                    addAssetPath.setAccessible(true);
-                    addAssetPath.invoke(pluginAssetManager, path);
-                    //2、获取宿主的Resources
-                    Resources appResources = context.getResources();
-                    //实例化插件的Resources
-                    pluginResource = new Resources(pluginAssetManager, appResources.getDisplayMetrics(), appResources.getConfiguration());
-                    if (dexClassLoader != null && pluginResource != null) {
-                        dexClassLoader.loadClass("com.ciot.plugin.Plugin1Activity");
-                        handler.sendEmptyMessage(666);
-                    } else {
-                        handler.sendEmptyMessage(0);
-                    }
-                }catch (Exception e) {
-                    e.printStackTrace();
+        new Thread(() -> {
+            try {
+                File file = new File(path);
+                Log.e(TAG, "File " + file.getAbsolutePath());
+                if (!file.exists()) {
+                    Log.e(TAG, "插件不存在");
+                    return;
+                }
+                File pluginDir = context.getDir("plugin", Context.MODE_PRIVATE);
+                //加载插件的class
+                dexClassLoader = new DexClassLoader(path, pluginDir.getAbsolutePath(), null, context.getClassLoader());
+
+                pluginResource = CreateResourceBloc.INSTANCE.create(path,context);
+
+                if (dexClassLoader != null) {
+                    handler.sendEmptyMessage(666);
+                } else {
                     handler.sendEmptyMessage(0);
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                handler.sendEmptyMessage(0);
             }
         }).start();
 
     }
-
 
     public Resources getResource() {
         return pluginResource;

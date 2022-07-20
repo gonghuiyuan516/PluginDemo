@@ -5,17 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.vip.lib_transfer.IActivityInterface;
 
 import java.lang.reflect.Constructor;
 
-public class ProxyActivity extends Activity {
+public class ProxyActivity extends AppCompatActivity {
 
     private IActivityInterface pluginActivity1;
 
@@ -25,7 +27,7 @@ public class ProxyActivity extends Activity {
         //真正的加载插件里面的Activity
         String className = getIntent().getStringExtra("className");
         try {
-            Log.d("vip",className);
+            Log.d("vip", className);
 
             Class<?> pluginActivity1Clazz = getClassLoader().loadClass(className);
             Constructor<?> constructor = pluginActivity1Clazz.getConstructor(new Class[]{});
@@ -79,7 +81,7 @@ public class ProxyActivity extends Activity {
 
     @Override
     public Resources getResources() {
-        return PluginManager.getInstance(this).getResource();
+        return PluginManager.getInstance(this).getResource()  ;
     }
 
     @Override

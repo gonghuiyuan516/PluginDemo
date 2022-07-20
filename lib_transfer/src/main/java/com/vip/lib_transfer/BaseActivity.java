@@ -67,11 +67,6 @@ public abstract class BaseActivity extends Activity implements IActivityInterfac
     }
 
     @Override
-    public <T extends View> T findViewById(int id) {
-        return appActivity.findViewById(id);
-    }
-
-    @Override
     public void startActivity(Intent intent) {
         Intent newIntent = new Intent();
         newIntent.putExtra("className", intent.getComponent().getClassName());

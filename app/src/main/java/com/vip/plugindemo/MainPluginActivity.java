@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.io.File;
 
 public class MainPluginActivity extends AppCompatActivity {
-    private String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "plugin.apk";
+    private String path = "/sdcard/plugin-debug.apk";
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -48,4 +48,6 @@ public class MainPluginActivity extends AppCompatActivity {
         });
         PluginManager.getInstance(this).loadPlugin(handler, path);
     }
+
+
 }
